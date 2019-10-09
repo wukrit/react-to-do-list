@@ -28,12 +28,41 @@ class ListContainer extends React.Component {
         this.setState({listItems: [...newList]})
     }
 
+    highlightListItem = (listItem) => {
+        if (listItem.classList.contains("list-item")) {
+            listItem.classList.add("over")
+        }
+    }
+    
+    removeHighlight = (listItem) => {
+        if (listItem.classList.contains("list-item")) {
+            listItem.classList.remove("over")
+        }
+    }
+
+    dropItem = (target, item) => {
+        console.log(target, item)
+        // if (listItem.classList.contains("list-item")) {
+            
+        // }
+    }
+
+    listItemEvents = () => {
+        return (
+            {
+                deleteListItem: this.deleteListItem,
+                highlightListItem: this.highlightListItem,
+                removeHighlight: this.removeHighlight,
+                dropItem: this.dropItem
+            }
+        )
+    }
+    
     render() {
         return (
-            < >     
-            {console.log(this.state.listItems)}           
+            < >               
                 <ListForm newListItem={this.newListItem} />
-                <ListItemContainer listItems={this.state.listItems} deleteListItem={this.deleteListItem} />
+                <ListItemContainer listItems={this.state.listItems} listItemEvents={this.listItemEvents} />
             </ >
         )
     }
