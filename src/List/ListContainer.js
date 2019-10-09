@@ -10,12 +10,12 @@ class ListContainer extends React.Component {
 
     newListItem = (event) => {
         event.preventDefault()
-
         const listItem = {
             id: this.state.listItems.length + 1,
             name: event.target.name.value,
             description: event.target.description.value
         }
+        event.target.reset()
         this.setState({listItems: [...this.state.listItems, listItem]})
     }
 
