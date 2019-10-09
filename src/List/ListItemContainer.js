@@ -5,7 +5,7 @@ class ListItemContainer extends React.Component {
 
     render() {
         return (
-            <div className="list-item-container">
+            < >
                 {
                     this.props.listItems.map((item, index) => {
                         return (
@@ -13,7 +13,7 @@ class ListItemContainer extends React.Component {
                         )
                     })
                 }
-            </div>
+            </ >
         )
     }
 

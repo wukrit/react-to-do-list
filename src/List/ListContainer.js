@@ -30,11 +30,11 @@ class ListContainer extends React.Component {
 
     render() {
         return (
-            <div className="list-container">     
+            < >     
             {console.log(this.state.listItems)}           
                 <ListForm newListItem={this.newListItem} />
                 <ListItemContainer listItems={this.state.listItems} deleteListItem={this.deleteListItem} />
-            </div>
+            </ >
         )
     }
 }
