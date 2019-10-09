@@ -8,14 +8,11 @@ class ListContainer extends React.Component {
         listItems: [...listData]
     }
 
-    newListItem = (event) => {
-        event.preventDefault()
+    newListItem = (taskObj) => {
         const listItem = {
             id: this.state.listItems.length + 1,
-            name: event.target.name.value,
-            description: event.target.description.value
+            ...taskObj
         }
-        event.target.reset()
         this.setState({listItems: [...this.state.listItems, listItem]})
     }
 
@@ -41,17 +38,29 @@ class ListContainer extends React.Component {
     }
 
     dropItem = (event, targetId) => {
+        console.log(this.state.listItems)
+        event.target.classList.remove('over')
         const itemId = event.dataTransfer.getData('id')
         const newArr = [...this.state.listItems]
         const item = newArr.splice(itemId, 1)
         newArr.splice(targetId, 0, ...item)
+        console.log(newArr)
 
-        event.target.classList.remove("over")
 
         this.setState({
             listItems: [...newArr]
         })
         
+    }
+
+    setDragStart = (event) => {
+        event.target.classList.add('selected')
+        event.dataTransfer.clearData()
+        event.dataTransfer.setData('id', event.target.getAttribute('id').substring(16))
+    }
+
+    setDragEnd = (event) => {
+        event.target.classList.remove('selected')
     }
 
     listItemEvents = () => {
@@ -60,7 +69,9 @@ class ListContainer extends React.Component {
                 deleteListItem: this.deleteListItem,
                 highlightListItem: this.highlightListItem,
                 removeHighlight: this.removeHighlight,
-                dropItem: this.dropItem
+                dropItem: this.dropItem,
+                setDragStart: this.setDragStart,
+                setDragEnd: this.setDragEnd
             }
         )
     }

@@ -9,17 +9,20 @@ class ListItem extends React.Component {
                 highlightListItem,
                 removeHighlight,
                 deleteListItem,
-                dropItem
+                dropItem,
+                setDragStart,
+                setDragEnd
              } = this.props.listItemEvents()
 
         return (
             <div 
-                className="list-item"
+                className="list-item list-box"
                 draggable="true"
                 onDragOver={(event) => event.preventDefault()}
                 onDragEnter={(event) => highlightListItem(event.target)}
                 onDragLeave={(event) => removeHighlight(event.target)} 
-                onDragStart={(event) => event.dataTransfer.setData('id', this.props.taskId)}
+                onDragStart={(event) => setDragStart(event)}
+                onDragEnd={(event) => setDragEnd(event)}
                 onDrop={(event) => dropItem(event, this.props.taskId)}
                 id={`list-item-index-${this.props.taskId}`}
             >
