@@ -16,9 +16,12 @@ class ListItem extends React.Component {
             <div 
                 className="list-item"
                 draggable="true"
+                onDragOver={(event) => event.preventDefault()}
                 onDragEnter={(event) => highlightListItem(event.target)}
                 onDragLeave={(event) => removeHighlight(event.target)} 
-                onDrop={(event) => dropItem(event.target, this)}
+                onDragStart={(event) => event.dataTransfer.setData('id', this.props.taskId)}
+                onDrop={(event) => dropItem(event, this.props.taskId)}
+                id={`list-item-index-${this.props.taskId}`}
             >
                 <p className="task-name">
                     {this.props.taskName}

@@ -9,7 +9,13 @@ class ListItemContainer extends React.Component {
                 {
                     this.props.listItems.map((item, index) => {
                         return (
-                            <ListItem key={index} taskId={index} taskName={item.name} taskDescription={item.description} listItemEvents={this.props.listItemEvents} />
+                            <ListItem 
+                                key={index}
+                                taskId={index}
+                                taskName={item.name} 
+                                taskDescription={item.description} 
+                                listItemEvents={this.props.listItemEvents} 
+                            />
                         )
                     })
                 }

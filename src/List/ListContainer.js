@@ -40,11 +40,18 @@ class ListContainer extends React.Component {
         }
     }
 
-    dropItem = (target, item) => {
-        console.log(target, item)
-        // if (listItem.classList.contains("list-item")) {
-            
-        // }
+    dropItem = (event, targetId) => {
+        const itemId = event.dataTransfer.getData('id')
+        const newArr = [...this.state.listItems]
+        const item = newArr.splice(itemId, 1)
+        newArr.splice(targetId, 0, ...item)
+
+        event.target.classList.remove("over")
+
+        this.setState({
+            listItems: [...newArr]
+        })
+        
     }
 
     listItemEvents = () => {
