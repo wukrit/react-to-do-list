@@ -6,8 +6,13 @@ class ListItemContainer extends React.Component {
     render() {
         return (
             <div className="list-item-container">
-                This is a list item container
-                <ListItem />
+                {
+                    this.props.listItems.map((item, index) => {
+                        return (
+                            <ListItem key={index} taskId={index} taskName={item.name} taskDescription={item.description} deleteListItem={this.props.deleteListItem} />
+                        )
+                    })
+                }
             </div>
         )
     }
